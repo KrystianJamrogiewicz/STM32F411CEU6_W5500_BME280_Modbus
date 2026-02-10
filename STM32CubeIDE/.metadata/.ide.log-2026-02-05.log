@@ -1,0 +1,35 @@
+2026-02-08 10:49:21,710 [INFO] WebApp:194 - Connection lost
+2026-02-08 10:49:22,111 [INFO] WebApp:191 - Connection restablished
+2026-02-08 10:51:11,276 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 521595880 Bytes (599785472)
+2026-02-08 10:51:14,774 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 547352472 Bytes (599785472)
+2026-02-08 10:51:15,488 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 388951040 Bytes (681574400)
+2026-02-08 10:51:15,974 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2026-02-08 10:51:15,975 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-02-08 10:51:15,975 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-02-08 10:51:15,975 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-02-08 10:51:15,975 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-02-08 10:51:15,976 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-02-08 10:51:16,218 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\license.tmp_save
+2026-02-08 10:51:16,434 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\license.tmp
+2026-02-08 10:51:16,462 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\gpio.tmp_save
+2026-02-08 10:51:16,586 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\gpio.tmp
+2026-02-08 10:51:16,662 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\stm32f4xx_it.c_save
+2026-02-08 10:51:16,882 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\stm32f4xx_it.c
+2026-02-08 10:51:16,885 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\stm32f4xx_it.h_save
+2026-02-08 10:51:16,962 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\stm32f4xx_it.h
+2026-02-08 10:51:16,971 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\stm32f4xx_hal_msp.c_save
+2026-02-08 10:51:17,100 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\stm32f4xx_hal_msp.c
+2026-02-08 10:51:17,104 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\system.tmp_save
+2026-02-08 10:51:17,174 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\MXTmpFiles\system.tmp
+2026-02-08 10:51:17,185 [INFO] CodeEngine:321 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\stm32f4xx_hal_conf.h_save
+2026-02-08 10:51:17,270 [INFO] CodeEngine:345 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\stm32f4xx_hal_conf.h
+2026-02-08 10:51:17,309 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\main.h_save
+2026-02-08 10:51:17,415 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Inc\main.h
+2026-02-08 10:51:17,419 [INFO] CodeEngine:265 - oldGeneratedFile, D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\main.c_save
+2026-02-08 10:51:17,488 [INFO] CodeEngine:289 - Generated code: D:\Dokumenty\jamro\Projekty\Programowanie\STM32\STM32F411CEU6_W5500_Modbus\firmware\STM32CubeIDE\STM32F411CEU6_W5500_Modbus\Core\Src\main.c
+2026-02-08 10:51:17,929 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 293mS.
+2026-02-08 10:51:17,933 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-02-08 10:51:18,004 [INFO] ConfigFileManager:1595 - The Die is : DIE431
+2026-02-08 10:51:18,849 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 916mS.
+2026-02-08 10:51:18,850 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2026-02-08 10:51:18,852 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
