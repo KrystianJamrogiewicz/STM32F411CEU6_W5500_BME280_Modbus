@@ -1,0 +1,27 @@
+# Systemowe pliki ukryte
+.DS_Store
+Thumbs.db
+
+# Katalogi z wynikami kompilacji
+Debug/
+Release/
+build/
+
+# Pliki obiektowe, binarne i mapy pamięci
+*.o
+*.d
+*.elf
+*.map
+*.bin
+*.hex
+*.su
+*.list
+
+# Pliki tymczasowe i logi
+*.bak
+*.log
+*.tmp
+*~
+
+# Pliki konfiguracyjne przestrzeni roboczej
+.metadata/
