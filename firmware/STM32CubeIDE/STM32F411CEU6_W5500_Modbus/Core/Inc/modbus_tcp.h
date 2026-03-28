@@ -39,6 +39,7 @@ void Modbus_Init(void);
 void Modbus_Loop(void);
 
 
+// --- C++ Compatibility (Closing) ---
 #ifdef __cplusplus
 }
 #endif

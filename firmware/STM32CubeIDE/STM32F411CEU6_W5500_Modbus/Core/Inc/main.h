@@ -65,6 +65,12 @@ void Error_Handler(void);
 #define W5500_RST_GPIO_Port GPIOA
 #define W5500_CS_Pin GPIO_PIN_4
 #define W5500_CS_GPIO_Port GPIOA
+#define W5500_SPI1_SCK_Pin GPIO_PIN_5
+#define W5500_SPI1_SCK_GPIO_Port GPIOA
+#define W5500_SPI1_MISO_Pin GPIO_PIN_6
+#define W5500_SPI1_MISO_GPIO_Port GPIOA
+#define W5500_SPI1_MOSI_Pin GPIO_PIN_7
+#define W5500_SPI1_MOSI_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

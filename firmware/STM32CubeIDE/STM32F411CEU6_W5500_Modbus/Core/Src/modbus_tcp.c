@@ -1,5 +1,5 @@
 #include "modbus_tcp.h"
-#include "W5500/socket.h"
+#include "socket.h"
 #include <string.h>
 
 #define MB_TCP_PORT 502 // The standard Modbus TCP port is 502
