@@ -1,10 +1,10 @@
+// ==============================================================================
+// === MODBUS TCP SERVER ========================================================
+// ==============================================================================
+
 #include "modbus_tcp.h"
 #include "socket.h"
 #include <string.h>
-
-#define MB_TCP_PORT 502 // The standard Modbus TCP port is 502
-#define MB_SOCKET   0 // Socked selection from 0 to 7 (One socked for one task)
-
 
 
 // Transmission register array (type 16-bit = 2 byte standard in ModbusTCP)

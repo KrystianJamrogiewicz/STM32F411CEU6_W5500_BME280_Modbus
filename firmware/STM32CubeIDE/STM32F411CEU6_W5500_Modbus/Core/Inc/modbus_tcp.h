@@ -1,5 +1,5 @@
 // ==============================================================================
-// === MODBUS TCP SERVER LIBRARY (Header File) ==================================
+// === MODBUS TCP SERVER LIBRARY ================================================
 // ==============================================================================
 
 #ifndef INC_MODBUS_TCP_H_
@@ -20,6 +20,16 @@ extern "C" {
 
 // Defines the total number of 16-bit Holding Registers available in Modbus TCP
 #define MB_REG_COUNT 10
+
+#define MB_TCP_PORT 502 // The standard Modbus TCP port is 502
+
+#define MB_SOCKET   0 // Socked selection from 0 to 7 (One socked for one task)
+
+// Example usage of multiple sockets over a single physical cable:
+// - Socket 0: Modbus TCP Server (Port 502)
+// - Socket 1: HTTP Web Server (Port 80)
+// - Socket 2: MQTT IoT Client (Port 1883)
+// - Socket 3..7: Other network tasks (e.g., NTP time sync, FTP)
 
 
 // ==============================================================================

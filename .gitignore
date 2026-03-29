@@ -1,6 +1,7 @@
 # Systemowe pliki ukryte
 .DS_Store
 Thumbs.db
+.idea/
 
 # Katalogi z wynikami kompilacji
 Debug/
