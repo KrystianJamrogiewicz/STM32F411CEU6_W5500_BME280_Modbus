@@ -2,8 +2,11 @@
 // === W5500 SPI LIBRARY ========================================================
 // ==============================================================================
 
+// Double inclusion prevention
 #ifndef W5500_SPI_H_
 #define W5500_SPI_H_
+
+#include "main.h" // Downloads port definitions and HAL library
 
 // --- C++ Compatibility ---
 // Allows this C code to be safely used in C++ projects (prevents name mangling)
@@ -11,9 +14,9 @@
 extern "C" {
 #endif
 
-#include "main.h" // Downloads port definitions and HAL library
+extern SPI_HandleTypeDef hspi1; // Link to the hardware SPI1 configuration.
 
-
+// Function prototype
 void W5500_Hardware_Init(void);
 
 
