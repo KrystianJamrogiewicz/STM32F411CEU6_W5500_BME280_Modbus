@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 #include <stdint.h> // Required for fixed-width integer types (uint16_t, uint8_t)
+#include "stm32f4xx_hal.h"
 
 
 // ==============================================================================
@@ -31,6 +32,7 @@ extern "C" {
 // - Socket 2: MQTT IoT Client (Port 1883)
 // - Socket 3..7: Other network tasks (e.g., NTP time sync, FTP)
 
+extern UART_HandleTypeDef huart1; // Link to the hardware UART1 configuration.
 
 // ==============================================================================
 // === GLOBAL VARIABLES =========================================================

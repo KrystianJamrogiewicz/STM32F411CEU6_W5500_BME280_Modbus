@@ -5,7 +5,8 @@
 #include "modbus_tcp.h"
 #include "socket.h"
 #include <string.h>
-
+#include "app.h"
+#include <stdio.h>
 
 // Transmission register array (type 16-bit = 2 byte standard in ModbusTCP)
 // Array size (MB_REG_COUNT in .h) = Number of registers
@@ -28,8 +29,8 @@ uint16_t MB_HoldingRegisters[MB_REG_COUNT] = {0};
 // Network Communication buffers array (type 8-bit = 1 byte) The wire transmits data in bytes one by one
 // Array size = Buffer Size in Bytes
 
-uint8_t rx_buff[512]; // Transmit buffer
-uint8_t tx_buff[512]; // Receive buffer
+static uint8_t rx_buff[512]; // Transmit buffer
+static uint8_t tx_buff[512]; // Receive buffer
 
 /* The maximum Modbus TCP frame is ~260 bytes but use 512 bytes to provide a safety margin
    for handling multiple packets arriving quickly
@@ -56,7 +57,11 @@ void Modbus_Init() {
 
 // Helper function to send a Modbus Exception Response
 // Used when the device cannot process the Master's request
-void send_exception(uint8_t funcCode, uint8_t exceptionCode, uint16_t transId) {
+static void send_exception(uint8_t funcCode, uint8_t exceptionCode, uint16_t transId) {
+
+	// UART message
+	sprintf(msg, "\r\n[MODBUS WARN] Rejected Request! Func: 0x%02X, Exc Code: 0x%02X\r\n", funcCode, exceptionCode);
+	HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 
 	// --- MBAP (Modbus Application Protocol) Header - The "Envelope" ---
 
@@ -115,6 +120,10 @@ void Modbus_Loop() {
         	    setSn_IR(MB_SOCKET, Sn_IR_CON);
         	    // Clearing the flag is done by writing a true to it
         	    // setSn_IR - acknowledges and clears the flag for: Sn_IR_CON (indicating a successful connection)
+
+        	    // UART message
+        		sprintf(msg, "\r\n[MODBUS INFO] New Client Connected!\r\n");
+        		HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
         	}
 
     		// Check the exact number of BYTES waiting to be read from the W5500 RX buffer
@@ -139,6 +148,9 @@ void Modbus_Loop() {
 				// --- VALIDATION 2: Minimum Frame Size ---
 				// A valid Modbus TCP request (Read/Write) must be at least 12 bytes long:
 				if (len < 12) {
+	        	    // UART message
+					sprintf(msg, "\r\n[MODBUS ERROR] Frame too short! Received %d bytes (expected min. 12). Dropping.\r\n", len);
+	        		HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 					return; // Abort processing and exit the function (Modbus_Loop) immediately. Drop this invalid frame.
 				}
 
@@ -201,6 +213,9 @@ void Modbus_Loop() {
 				// --- VALIDATION 3: Protocol ID Verification ---
 				// The Modbus TCP standard dictates that Protocol ID must always be 0x0000
 				if (protoId != 0x0000) {
+	        	    // UART message
+					sprintf(msg, "\r\n[MODBUS ERROR] Invalid Protocol ID: 0x%04X (Expected 0x0000).\r\n", protoId);
+	        		HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 					return; // Ignore, this is not a Modbus TCP packet. Abort processing and exit the function (Modbus_Loop) immediately
 				}
 
@@ -209,6 +224,9 @@ void Modbus_Loop() {
 				// mbapLen declares the payload size AFTER the Length field
 				// A complete frame requires: 6 bytes (MBAP start) + mbapLen
 				if (len < (6 + mbapLen)) {
+	        	    // UART message
+					sprintf(msg, "\r\n[MODBUS ERROR] Incomplete frame received. Dropping.\r\n");
+	        		HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 					return; // Incomplete frame (fragmented). Abort processing and exit the function (Modbus_Loop) immediately
 				}
 
@@ -283,9 +301,28 @@ void Modbus_Loop() {
 					uint16_t startAddr = (rx_buff[8] << 8) | rx_buff[9]; // From which register?
 					uint16_t count = (rx_buff[10] << 8) | rx_buff[11];   // How many registers?
 
+
+					// --- VALIDATION SENSOR: HARDWARE FAILURE ---
+					// Check if the Master (PLC) is requesting BME280 data (registers 0, 1, 2)
+					// AND if the BME280 hardware error flag (Bit 0) is currently active.
+					if ((startAddr >= 0 && startAddr <= 2) && (sensors_error_mask & (1 << 0))) {
+						// Exception 0x04 = Slave Device Failure (Hardware failure of the requested module)
+						send_exception(funcCode, 0x04, transId);
+					}
+
+					/* --- PLACEHOLDER FOR FUTURE SENSORS ---
+					// Check if the Master is requesting the new sensor (e.g., register 3)
+					// AND if the new sensor's error flag (Bit 1) is active.
+					else if ((startAddr == 3) && (sensors_error_mask & (1 << 1))) {
+					send_exception(funcCode, 0x04, transId);
+					}
+					*/
+					// ----------------------------------------------------------------------
+
+
 					// --- VALIDATION 5: Modbus Standard Limits ---
 					// Modbus standard forbids reading 0 registers or more than 125 at once.
-					if (count == 0 || count > 125) {
+					else if (count == 0 || count > 125) {
 						send_exception(funcCode, 0x03, transId); // Using the error sending function (send_exception)
 						// Error 0x03 - Illegal Data Value
 					 }
@@ -372,6 +409,9 @@ void Modbus_Loop() {
 
         // DISCONNECT: The Master wants to close the connection
         case SOCK_CLOSE_WAIT:
+    	    // UART message
+			sprintf(msg, "\r\n[MODBUS INFO] Client disconnected (SOCK_CLOSE_WAIT).\r\n");
+    		HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
             disconnect(MB_SOCKET);
             break;
 

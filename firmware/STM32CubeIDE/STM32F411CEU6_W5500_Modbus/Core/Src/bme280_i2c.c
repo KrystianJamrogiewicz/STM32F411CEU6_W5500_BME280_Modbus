@@ -32,7 +32,7 @@ Saved during initialization to be used globally by the I2C read/write callbacks.
  *
  * Usage: Assigned to the BME280 library during initialization (bme280_device.read = user_i2c_read).
  */
-BME280_INTF_RET_TYPE user_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr) {
+static BME280_INTF_RET_TYPE user_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr) {
 
     // Cast the void pointer to uint8_t pointer, then extract the actual value (dereference)
     uint8_t dev_addr = *(uint8_t*)intf_ptr;
@@ -69,7 +69,7 @@ BME280_INTF_RET_TYPE user_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t
  * @param intf_ptr Pointer to the interface data (contains the shifted I2C device address).
  * @return BME280_INTF_RET_TYPE Returns 0 (BME280_OK) on success, or an error code on failure.
  */
-BME280_INTF_RET_TYPE user_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr) {
+static BME280_INTF_RET_TYPE user_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr) {
     // Extract the physical I2C device address
     uint8_t dev_addr = *(uint8_t*)intf_ptr;
 
@@ -90,7 +90,7 @@ BME280_INTF_RET_TYPE user_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, u
  * The 'intf_ptr' argument is provided by the library for OS integration (to identify the delayed device),
  * but it is unused in our bare-metal STM32 setup.
  */
-void user_delay_us(uint32_t period, void *intf_ptr) {
+static void user_delay_us(uint32_t period, void *intf_ptr) {
     /* * STM32 HAL_Delay() only supports milliseconds.
      * We convert microseconds to milliseconds by dividing by 1000.
      * The "+ 1" ensures we ALWAYS round up (e.g., 500us becomes 1ms).
