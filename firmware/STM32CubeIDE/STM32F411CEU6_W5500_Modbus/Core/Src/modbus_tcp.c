@@ -49,6 +49,11 @@ void Modbus_Init() {
     This changes the state of the system from SOCK_CLOSED to SOCK_INIT
     */
 
+    // TCP KEEP-ALIVE SECURITY ---
+    // Configures the W5500 to automatically check if the connection to the PC is still alive.
+    // A value of 1 means 5 seconds. After this time, the "dead" connection will be terminated.
+    setSn_KPALVTR(MB_SOCKET, 1);
+
     listen(MB_SOCKET);	// Start listening for incoming client connections
     // This changes the state of the system from SOCK_INIT to SOCK_LISTEN
 }
@@ -102,6 +107,15 @@ static void send_exception(uint8_t funcCode, uint8_t exceptionCode, uint16_t tra
 
 
 void Modbus_Loop() {
+
+	// --- PHYSICAL CABLE DETECTION (PHY) ---
+	// The getPHYCFGR() function reads the socket's hardware register.
+	// Bit 0 is the Link flag (1 = cable connected, 0 = cable disconnected).
+	if ((getPHYCFGR() & 0x01) == 0) {
+	    close(MB_SOCKET); // Turn off the socket, it can be automatically resumed
+	 }
+
+
     // Check the current state of the hardware socket
     uint8_t sn_state = getSn_SR(MB_SOCKET);
 
