@@ -24,7 +24,7 @@ This project is a weather station based on the STM32F411CEU6 (Blackpill) microco
 The core logic of the application runs on a non-blocking Finite State Machine (FSM) utilizing `HAL_GetTick()` for timing. This ensures the microcontroller never freezes while waiting for network packets or sensor data.
 
 ### FSM Diagram
-![State Machine Logic](docs/app_loop_fsm.svg)
+![State Machine Logic](docs/app_loop_fsm.drawio.svg)
 
 **FSM States:**
 1. **STATE_INIT:** Initializes peripherals, I2C, SPI, and Network settings.
